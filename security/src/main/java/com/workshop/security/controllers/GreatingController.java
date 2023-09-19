@@ -1,10 +1,10 @@
 package com.workshop.security.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 //@RequestMapping("/Api/V1")
 public class GreatingController {
 
@@ -24,4 +24,3 @@ public class GreatingController {
     }
 
 }
-
