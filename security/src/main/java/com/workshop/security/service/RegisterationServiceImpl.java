@@ -1,6 +1,7 @@
 package com.workshop.security.service;
 
 import com.workshop.security.dtos.UserDto;
+import com.workshop.security.exceptions.UserExistException;
 import com.workshop.security.mapper.UserMapper;
 import com.workshop.security.models.constants.Role;
 import com.workshop.security.models.entities.User;
@@ -22,7 +23,11 @@ public class RegisterationServiceImpl {
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
-    public UserDto addUser(UserDto userDto){
+    public UserDto addUser(UserDto userDto) throws UserExistException {
+
+        if(userRepository.findByEmail(userDto.getEmail()).isPresent()){
+            throw new UserExistException("email: " + userDto.getEmail() + "is already exist !");
+        }
 
         userDto.setRole(Role.ROLE_USER);
         User user = userMapper.dtoToUser(userDto);
@@ -38,6 +43,5 @@ public class RegisterationServiceImpl {
 
         return users.stream().map(user -> this.userMapper.userToDto(user))
                 .collect(Collectors.toList());
-
     }
 }

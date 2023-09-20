@@ -1,5 +1,6 @@
 package com.workshop.security.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.workshop.security.models.constants.Role;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,6 +33,7 @@ public class User implements UserDetails {
     private String email;
 
     @Column(name = "password", nullable = false)
+    //@JsonIgnore
     private String password;
 
     @Enumerated(EnumType.STRING)

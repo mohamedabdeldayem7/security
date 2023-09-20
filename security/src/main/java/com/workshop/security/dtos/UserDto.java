@@ -4,6 +4,7 @@ package com.workshop.security.dtos;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.workshop.security.models.constants.Role;
 import com.workshop.security.validation.ValidEmail;
 import lombok.*;

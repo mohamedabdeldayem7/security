@@ -1,5 +1,6 @@
 package com.workshop.security.handlers;
 
+import com.workshop.security.exceptions.UserExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -19,5 +20,10 @@ public class SecurityExceptionHandling {
                 errorMap.put(err.getField(), err.getDefaultMessage()));
 
         return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {UserExistException.class})
+    public ResponseEntity<?> handleUserExistException(UserExistException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
